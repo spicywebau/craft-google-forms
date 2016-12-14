@@ -92,7 +92,7 @@ class GoogleFormsService extends BaseApplicationComponent
 			foreach($xml->xpath('//script[not(@src)]') as $node)
 			{
 				$js = \dom_import_simplexml($node)->nodeValue;
-				preg_match('/var\s+FB_PUBLIC_LOAD_DATA_\s*=\s*((.|[\r\n])+);/', $js, $matches);
+				preg_match('/var\s+FB_PUBLIC_LOAD_DATA_\s*=\s*(.+);/s', $js, $matches);
 
 				if(!empty($matches))
 				{
