@@ -1,7 +1,7 @@
 <?php
 namespace Craft;
 
-class GoogleForms_TimeFieldModel extends GoogleForms_BaseItemModel
+class GoogleForms_TimeFieldModel extends GoogleForms_BaseFieldModel
 {
 	public function getType()
 	{

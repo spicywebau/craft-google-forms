@@ -1,7 +1,7 @@
 <?php
 namespace Craft;
 
-class GoogleForms_TextModel extends GoogleForms_BaseItemModel
+class GoogleForms_TextItemModel extends GoogleForms_BaseItemModel
 {
 	public function getType()
 	{

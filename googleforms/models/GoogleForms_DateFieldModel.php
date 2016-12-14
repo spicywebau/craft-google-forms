@@ -1,7 +1,7 @@
 <?php
 namespace Craft;
 
-class GoogleForms_DateFieldModel extends GoogleForms_BaseItemModel
+class GoogleForms_DateFieldModel extends GoogleForms_BaseFieldModel
 {
 	public function getType()
 	{

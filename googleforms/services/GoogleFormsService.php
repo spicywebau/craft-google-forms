@@ -41,7 +41,7 @@ class GoogleFormsService extends BaseApplicationComponent
 					case 3: $item = new GoogleForms_DropdownFieldModel(); break;
 					case 4: $item = new GoogleForms_CheckboxesFieldModel(); break;
 					case 5: $item = new GoogleForms_LinearScaleFieldModel(); break;
-					case 6: $item = new GoogleForms_TextModel(); break;
+					case 6: $item = new GoogleForms_TextItemModel(); break;
 					case 7: $item = new GoogleForms_MultipleChoiceGridFieldModel(); break;
 					case 8:
 					{
