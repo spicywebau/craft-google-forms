@@ -26,150 +26,40 @@ class GoogleFormsService extends BaseApplicationComponent
 			$currentSection = new GoogleForms_SectionModel();
 			$currentSection->title = $form->title;
 			$currentSection->description = $form->description;
-			$currentSection->items = [];
-
 			$form->addSection($currentSection);
 
 			foreach($data[1][1] as $itemData)
 			{
-				$itemId = $itemData[0];
-				$itemTitle = $itemData[1];
-				$itemDescription = $itemData[2];
+				$item = null;
 				$itemType = $itemData[3];
 
 				switch($itemType)
 				{
-					case 0: // Short answer
-					{
-						$item = new GoogleForms_ShortAnswerFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 1: // Paragraph
-					{
-						$item = new GoogleForms_ParagraphFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 2: // Multiple choice
-					{
-						$item = new GoogleForms_MultipleChoiceFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 3: // Dropdown
-					{
-						$item = new GoogleForms_DropdownFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 4: // Checkboxes
-					{
-						$item = new GoogleForms_CheckboxesFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 5: // Linear scale
-					{
-						$item = new GoogleForms_LinearScaleFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 6: // Text
-					{
-						$item = new GoogleForms_TextModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 7: // Multiple choice grid
-					{
-						$item = new GoogleForms_MultipleChoiceGridFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 8: // Section
+					case 0: $item = new GoogleForms_ShortAnswerFieldModel(); break;
+					case 1: $item = new GoogleForms_ParagraphFieldModel(); break;
+					case 2: $item = new GoogleForms_MultipleChoiceFieldModel(); break;
+					case 3: $item = new GoogleForms_DropdownFieldModel(); break;
+					case 4: $item = new GoogleForms_CheckboxesFieldModel(); break;
+					case 5: $item = new GoogleForms_LinearScaleFieldModel(); break;
+					case 6: $item = new GoogleForms_TextModel(); break;
+					case 7: $item = new GoogleForms_MultipleChoiceGridFieldModel(); break;
+					case 8:
 					{
 						$currentSection = new GoogleForms_SectionModel();
-						$currentSection->id = $itemId;
-						$currentSection->title = $itemTitle;
-						$currentSection->description = $itemDescription;
-						$currentSection->items = [];
-
+						$currentSection->id = $itemData[0];
+						$currentSection->title = $itemData[1];
+						$currentSection->description = $itemData[2];
 						$form->addSection($currentSection);
 					}
 					break;
-					case 9: // Date
-					{
-						$item = new GoogleForms_DateFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
+					case 9: $item = new GoogleForms_DateFieldModel(); break;
+					case 10: $item = new GoogleForms_TimeFieldModel(); break;
+				}
 
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
-					case 10: // Time
-					{
-						$item = new GoogleForms_TimeFieldModel();
-						$item->id = $itemId;
-						$item->title = $itemTitle;
-						$item->description = $itemDescription;
-
-						// TODO
-
-						$currentSection->addItem($item);
-					}
-					break;
+				if($item)
+				{
+					$item->setFromData($itemData);
+					$currentSection->addItem($item);
 				}
 			}
 
