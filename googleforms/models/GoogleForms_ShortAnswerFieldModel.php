@@ -7,11 +7,4 @@ class GoogleForms_ShortAnswerFieldModel extends GoogleForms_BaseFieldModel
 	{
 		return 'shortAnswer';
 	}
-
-	protected function defineAttributes()
-	{
-		return array_merge(parent::defineAttributes(), [
-
-		]);
-	}
 }
